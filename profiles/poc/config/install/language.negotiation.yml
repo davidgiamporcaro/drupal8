@@ -1,0 +1,13 @@
+session:
+  parameter: language
+url:
+  source: domain
+  prefixes:
+    en: ''
+    fr: fr
+    es: es
+  domains:
+    en: drupal8.local
+    fr: fr.drupal8.local
+    es: es.drupal8.local
+selected_langcode: site_default

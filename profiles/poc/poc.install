@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * Install, update and uninstall functions for the profilename install profile.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ *
+ * @see system_install()
+ */
+function poc_install() {
+  $host = \Drupal::request()->getHost();
+
+  // First, do everything in standard profile.
+  include_once DRUPAL_ROOT . '/core/profiles/standard/standard.install';
+  standard_install();
+
+  //Configure domain prefix
+  $domains = array();
+  $languages = \Drupal::languageManager()->getLanguages(\Drupal\Core\Language\LanguageInterface::STATE_CONFIGURABLE);
+  foreach ($languages as $language) {
+    if ($language->getId() != 'en') {
+      $domains[$language->getId()] = $language->getId() . '.' . $host;
+    } else {
+      $domains[$language->getId()] = $host;
+    }
+  }
+  $config = \Drupal::configFactory()->getEditable('language.negotiation');
+  $config->set('url.domains', $domains)->save();
+  //\Drupal::logger('poc_install')->notice(print_r($domains, true));
+
+  //Be sure that all the fields were created.
+  \Drupal::service('entity.definition_update_manager')->applyUpdates();
+}

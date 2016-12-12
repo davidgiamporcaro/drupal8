@@ -1,0 +1,55 @@
+name: POC D8
+type: profile
+description: 'Install with commonly used features pre-configured and multilingual features (English, Spanish, French)'
+core: 8.x
+
+# Optional: Declare your installation profile as a distribution
+# This will make the installer auto-select this installation profile.
+# The distribution_name property is used in the installer and other places as
+# a label for the software being installed.
+#distribution:
+#  name: POC D8
+
+# Required modules
+dependencies:
+  - node
+  - history
+  - block
+  - block_content
+  - breakpoint
+  - color
+  - config
+  - comment
+  - contextual
+  - contact
+  - quickedit
+  - help
+  - image
+  - options
+  - path
+  - taxonomy
+  - syslog
+  - search
+  - shortcut
+  - toolbar
+  - field_ui
+  - file
+  - rdf
+  - views
+  - views_ui
+  - editor
+  - ckeditor
+  - locale
+  - menu_link_content
+  - automated_cron
+  - content_translation
+  - config_translation
+  - menu_ui
+  - responsive_image
+  - datetime
+
+keep_english: true
+
+themes:
+  - bartik
+  - seven
